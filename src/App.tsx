@@ -1,7 +1,9 @@
-import { PlusCircle, Search } from "lucide-react"
-import { Button } from "./components/ui/button"
-import { Input } from "./components/ui/input"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./components/ui/table"
+import { PlusCircle, SaveIcon, Search, ShieldCloseIcon, Trash2Icon, XCircle } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DialogDescription, DialogClose } from "@/components/ui/dialog"
+import { Label } from '@/components/ui/label';
 
 function App() {
 
@@ -18,10 +20,49 @@ function App() {
             Filtrar resultados
           </Button>
         </form>
-        <Button>
-          <PlusCircle className="w-4 h-4 mr-2" />
-          Novo Produto
-        </Button>
+
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button>
+              <PlusCircle className="w-4 h-4 mr-2" />
+              Novo Produto
+            </Button>
+          </DialogTrigger>
+          
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Novo produto</DialogTitle>
+              <DialogDescription>Criar um novo produto no sistema</DialogDescription>
+            </DialogHeader>
+
+            <form className="space-y-6">
+              <div className="grid grid-cols-4 items-center text-right gap-3">
+                <Label htmlFor="name">Produto</Label>
+                <Input className="col-span-3" id="name"/>
+              </div>
+              <div className="grid grid-cols-4 items-center text-right gap-3">
+                <Label htmlFor="price">Preço</Label>
+                <Input className="col-span-3" id="price"/>
+              </div>
+
+              <DialogFooter>
+                <DialogClose>
+                  <Button type="button" variant="destructive">      
+                    <XCircle className="w-4 h-4 mr-2" />
+                    Cancelar
+                  </Button>
+                </DialogClose>
+                <Button type="submit" variant="default">
+                  <SaveIcon className="w-4 h-4 mr-2" />
+                  Salvar
+                </Button>
+              </DialogFooter>
+            </form>
+          </DialogContent>
+        </Dialog>
+
+
+
       </div>
 
       <div className="border rounded-lg p-2">
